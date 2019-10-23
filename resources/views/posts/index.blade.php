@@ -5,7 +5,10 @@
 @section('content')
   <h1>Posts</h1>
   <div class="mb-5">
-    <a href="{{ route('posts.create') }}">Create New Post</a>
+    <a href="{{ route('posts.create') }}">Create New Post</a> | 
+    <a href="{{ route('posts.index') }}">All Posts</a> |  
+    <a href="{{ route('posts.index', ['published' => 1]) }}">Published</a> | 
+    <a href="{{ route('posts.index', ['published' => 0]) }}">Unpublished</a>
   </div>
 
   @forelse ($posts as $post)

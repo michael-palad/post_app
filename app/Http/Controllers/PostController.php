@@ -12,9 +12,17 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
+        if ($request->has('published')) {
+            if ($request->query('published')) {
+                $posts = Post::published()->get();
+            } else {
+                $posts = Post::unpublished()->get();    
+            }
+        } else  {
+            $posts = Post::all();
+        }
 
         return view('posts.index', compact('posts'));
     }
